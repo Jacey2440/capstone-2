@@ -30,6 +30,7 @@ public class Main {
 
     private static void orderScreen(Scanner scanner) {
         boolean viewing = true;
+        Order currentOrder = new Order();
         while (viewing) {
 
             System.out.println("====Order Menu====");
@@ -45,7 +46,30 @@ public class Main {
 //                Add Sandwich
                     break;
                 case "2":
-//                add drink
+
+                    boolean correctSize = false;
+                    String drinkSize = "";
+                    while (!correctSize) {
+                        System.out.println("What size would you like?"
+                                + "\nSmall"
+                                + "\nMedium"
+                                + "\nLarge");
+                        drinkSize = scanner.nextLine().trim();
+
+                        switch (drinkSize) {
+                            case "small":
+                            case "medium":
+                            case "large":
+                                correctSize = true;
+                                System.out.println("You chose a " + drinkSize + " drink");
+                                break;
+                            default:
+                                System.out.println("invalid response...Please try again");
+                                break;
+                        }
+                        break;
+                    }
+                    currentOrder.addItem("Drink size:" + drinkSize);
                     break;
                 case "3":
 //                add chips
@@ -63,8 +87,7 @@ public class Main {
 
             }
 
+
         }
-
-
     }
 }
