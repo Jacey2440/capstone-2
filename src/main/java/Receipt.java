@@ -24,9 +24,9 @@ public class Receipt {
 
         // File name includes order number and date/time
         DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String timeStamp = LocalDateTime.now().format(FORMATTER);
+        String date = LocalDateTime.now().format(FORMATTER);
 
-        String fileName = "order-" + orderNumber + " Date - " + timeStamp + ".txt";
+        String fileName = "order-" + orderNumber + " Date - " + date + ".txt";
         //
         filePath = folderPath.resolve(fileName);
 
@@ -39,7 +39,7 @@ public class Receipt {
     // Append a line to the file
     public void writeLine(String text) throws IOException {
         try (FileWriter writer = new FileWriter(filePath.toFile(), true)) {
-            writer.write(text + System.lineSeparator());
+            writer.write(text + "\n");
         }
     }
 }

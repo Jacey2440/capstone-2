@@ -7,18 +7,17 @@ management, allowing customers to order drinks, chips, and eventually sandwiches
 as receipts for record-keeping.
 
 The project is built using **Object-Oriented Programming (OOP)** principles, including **abstract classes** and *
-*inheritance**, making it scalable for future features like full sandwich customization or online ordering.
+*inheritance**, making it scalable for future features like full sandwich customization.
 
 ---
 
-## Features Implemented
+## Features
 
 ### Ordering Menu
 
 - Users can interact with a console-based menu:
     - **Add Drink**
     - **Add Chips**
-    - **Checkout** (placeholder, functionality pending)
     - **Cancel Order**
 
 ### Drinks
@@ -36,7 +35,7 @@ The project is built using **Object-Oriented Programming (OOP)** principles, inc
 
 - Each order generates a unique receipt file in `src/main/resources/Receipts/`.
 - Receipt filenames include the **order number** and **date**:  
-  `order-{orderNumber} Date - yyyy-MM-dd.txt`
+- order-{orderNumber} Date - yyyy-MM-dd.txt`
 - Each item added to the order is appended to the receipt file.
 
 ---
@@ -134,11 +133,11 @@ public class Receipt {
             // creates a folder path if the mentioned path does not exist
         }
 
-        // File name includes order number and date/time
+        // File name includes order number and date
         DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String timeStamp = LocalDateTime.now().format(FORMATTER);
+        String date = LocalDateTime.now().format(FORMATTER);
 
-        String fileName = "order-" + orderNumber + " Date - " + timeStamp + ".txt";
+        String fileName = "order-" + orderNumber + " Date - " + date + ".txt";
         //
         filePath = folderPath.resolve(fileName);
 
@@ -151,7 +150,7 @@ public class Receipt {
     // Append a line to the file
     public void writeLine(String text) throws IOException {
         try (FileWriter writer = new FileWriter(filePath.toFile(), true)) {
-            writer.write(text + System.lineSeparator());
+            writer.write(text + "\n");
         }
     }
 }
