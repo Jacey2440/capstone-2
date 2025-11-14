@@ -1,25 +1,17 @@
-public class Drink {
-    private String name;
+public class Drink extends OrderItem {
     private String size;
-    private int price;
 
-    public Drink(String name, String size, int price) {
-        this.name = name;
+    public Drink(String size, double price) {
+        super(size + "Drink", price);
         this.size = size;
-        this.price = price;
     }
 
-    public String getName() {
-        return name;
+
+    @Override
+    public String getDescription() {
+        return size + " Drink - $" + String.format("%.2f", getPrice());
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public int getPrice() {
-        return price;
-    }
 }
 
 
